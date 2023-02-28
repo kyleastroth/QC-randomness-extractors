@@ -1,0 +1,31 @@
+%As you can see, this problem is very similar to
+%privacy amplification, but without the added complication of Alice having to coordinate with Bob!
+
+In this report, we introduced the concept of a randomness extractor. We discussed classical randomness extractors and provided examples and applications, namely, 2-universal extractors. We further discussed the concept of quantum-to-classical randomness extractors. We showed that for a QC-extractor to distill randomness from a quantum state $\rho_{AE}$, the relevant quantity to bound is the conditional min-entropy $\Hmin(A | E)_{\rho}$. This is in formal analogy with classical-to-classical extractors, in which case the relevant quantity is $\Hmin(X | E)_{\rho}$.
+
+We showed various properties of QC-extractors and gave several examples for QC-extractors. We compare our results about QC-extractors with CC-extractors in \autoref{table:summary}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|l|c|c|}
+    \hline
+        & & CC-extractors & QC-extractors \\\hline 
+        Seed & Lower bound & $\log(n - k) + 2 \log(1 / \varepsilon)$ & $\log(1 / \varepsilon)$ \\
+        & Upper bounds & $\log(n - k) + 2 \log(1 / \varepsilon)$ (NE) & $m + \log n + 4 \log(1 / \varepsilon)$ \\
+        & & $c \log(n / \varepsilon)$ & $3 n$ \\\hline 
+        Output & Upper bound & $k - 2 \log(1 / \varepsilon)$ & $n + \Hmin^{\sqrt{\varepsilon}}(A | E)$ \\
+        & Lower bound & $k - 2 \log(1 / \varepsilon)$ & $n + k - 2 \log(1 / \varepsilon)$ \\\hline
+    \end{tabular}
+    \vspace{5pt}
+    \caption{Bounds on the seed size and output size in terms of (qu)bits for different kinds of $(k, \varepsilon)$-randomness extractors. Here, n refers to the number of input (qu)bits, $m$ the number of output (qu)bits, and $k$ the min-entropy of the input $\Hmin(A | E)$.}
+    \label{table:summary}
+\end{table}
+
+There is an extensive difference between the upper and lower bounds for the seed size of QC-extractors. We were only able to show the existence of QC-extractors with seed length roughly the output size $m$, but we believe that it should be possible to find QC-extractors with much smaller seeds, say $O({\rm polylog}(n))$ bits long, where $n$ is the input size. However, entirely different techniques might be needed to address this question.
+
+We showed that every QC-extractor gives rise to entropic uncertainty relations with quantum side information for the Von Neumann (Shannon) entropy and the min-entropy. Here the seed size translates into the number of measurements in the uncertainty relation. Since it is, in general difficult to obtain uncertainty relations for a small set of measurements (except for the special case of two), finding QC-extractors with a small seed size is also worth pursuing from the point of view of uncertainty relations.
+
+We used the bitwise QC-extractor from \autoref{sec:qc_ext} to show that the security in the noisy storage model can be related to the strong converse rate of the quantum storage, a problem that attracted quite some attention over the last few years. Here one can also see the usefulness of bitwise QC-extractors for quantum cryptography. Indeed, any bitwise QC-extractor would yield a protocol for weak string erasure. Bitwise measurements have a very simple structure and hence are implementable with current technology. In that respect, it would be interesting to see if a similar QC-extractor can also be proven for only two (complementary) measurements per qubit. This would give a protocol for weak string erasure. It is expected that QC-extractors will have many more applications in quantum cryptography, e.g., quantum key distribution and privacy amplification.
+
+We encourage the reader to go through the following video, which provides a brief overview of the topic:
+\href{https://tinyurl.com/eecs572projectvideo}{Quantum-to-Classical Randomness Extractor\footnote{https://tinyurl.com/eecs572projectvideo}.}
